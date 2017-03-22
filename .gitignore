@@ -1,0 +1,5 @@
+/client/libs
+/server/packages
+/server/ContactService/obj
+/server/ContactService/bin
+/server/ContactService/DB/db.json
