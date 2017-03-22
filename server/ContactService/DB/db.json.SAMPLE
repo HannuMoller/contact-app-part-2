@@ -1,0 +1,9 @@
+﻿// Edit this file, rename to db.json, and remove these comment lines!
+// currently only MySQL supported!
+{
+  "engine": "MySQL",
+  "uid": "database username here",
+  "pwd": "database password here",
+  "host": "localhost or fully qualified domain name here",
+  "db":  "database name here" 
+}
