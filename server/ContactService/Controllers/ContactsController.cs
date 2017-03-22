@@ -13,14 +13,12 @@ namespace ContactService.Controllers
     public class ContactsController : ApiController
     {
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpGet]
         public IEnumerable<Contact> GetAllContacts()
         {
             return Services.ContactService.GetAllContacts();
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpPost]
         public IHttpActionResult AddContact([FromBody]Contact contact)
         {
@@ -34,7 +32,6 @@ namespace ContactService.Controllers
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpDelete]
         public IHttpActionResult RemoveContact([FromBody]Contact contact)
         {
@@ -48,7 +45,6 @@ namespace ContactService.Controllers
             }
         }
 
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpPut]
         public IHttpActionResult ModifyContact([FromBody]Contact contact)
         {
