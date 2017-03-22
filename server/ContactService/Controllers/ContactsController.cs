@@ -17,14 +17,14 @@ namespace ContactService.Controllers
         [HttpGet]
         public IEnumerable<Contact> GetAllContacts()
         {
-            return Contact.GetAllContacts();
+            return Services.ContactService.GetAllContacts();
         }
 
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpPost]
         public IHttpActionResult AddContact([FromBody]Contact contact)
         {
-            if (Contact.AddContact(contact))
+            if (Services.ContactService.AddContact(contact))
             {
                 return Ok();
             }
@@ -38,7 +38,7 @@ namespace ContactService.Controllers
         [HttpDelete]
         public IHttpActionResult RemoveContact([FromBody]Contact contact)
         {
-            if (Contact.DeleteContact(contact))
+            if (Services.ContactService.DeleteContact(contact))
             {
                 return Ok();
             }
@@ -52,7 +52,7 @@ namespace ContactService.Controllers
         [HttpPut]
         public IHttpActionResult ModifyContact([FromBody]Contact contact)
         {
-            if (Contact.ModifyContact(contact))
+            if (Services.ContactService.ModifyContact(contact))
             {
                 return Ok();
             }
@@ -61,7 +61,6 @@ namespace ContactService.Controllers
                 return NotFound();
             }
         }
-
 
     }
 }
