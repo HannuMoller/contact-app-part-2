@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using ContactService.DB;
@@ -20,15 +21,16 @@ namespace ContactService.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult AddContact([FromBody]Contact contact)
+        public int AddContact([FromBody]Contact contact)
         {
-            if (Services.ContactService.AddContact(contact))
+            contact.Id =Services.ContactService.AddContact(contact);
+            if (contact.Id > 0)
             {
-                return Ok();
+                return contact.Id;
             }
             else
             {
-                return this.NotFound();
+                return -1;
             }
         }
 

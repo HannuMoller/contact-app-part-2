@@ -9,14 +9,12 @@ namespace ContactService.Models
 {
     public class Contact
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }
         public string StreetAddress { get; set; }
         public string City { get; set; }
-
-        public string OriginalFirstName { get; set; } // placeholder for update
-        public string OriginalLastName { get; set; } // placeHolder for update
 
         /// <summary>
         /// Constructor
@@ -26,8 +24,9 @@ namespace ContactService.Models
         /// <param name="phone"></param>
         /// <param name="streetAddress"></param>
         /// <param name="city"></param>
-        public Contact(string firstName, string lastName, string phone, string streetAddress, string city)
+        public Contact(int id, string firstName, string lastName, string phone, string streetAddress, string city)
         {
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
             Phone = phone;

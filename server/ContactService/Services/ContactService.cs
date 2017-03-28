@@ -16,13 +16,13 @@ namespace ContactService.Services
         public static Contact[] GetAllContacts()
         {
             var db = Database.GetConnection();
-            var sql = "select first_name,last_name,phone,street_address,city from contacts";
+            var sql = "select id,first_name,last_name,phone,street_address,city from contacts";
             var result = db.Query(sql);
 
             var contacts = new Contact[result.Count];
             for (int i = 0; i < result.Count; i++)
             {
-                contacts[i] = new Contact(result[i][0], result[i][1], result[i][2], result[i][3], result[i][4]);
+                contacts[i] = new Contact(int.Parse(result[i][0]), result[i][1], result[i][2], result[i][3], result[i][4], result[i][5]);
             }
 
             db.Close();
@@ -34,19 +34,23 @@ namespace ContactService.Services
         /// Add new contact to database
         /// </summary>
         /// <param name="contact"></param>
-        /// <returns></returns>
-        public static bool AddContact(Contact contact)
+        /// <returns> id for created contact </returns>
+        public static int AddContact(Contact contact)
         {
-            var sql = "insert into contacts (first_name,last_name,phone,street_address,city) values ('" +
-                      contact.FirstName + "','" + contact.LastName + "','" + contact.Phone + "','" +
-                      contact.StreetAddress + "','" + contact.City + "')";
             var db = Database.GetConnection();
+            var sql = "select IFNULL(max(id)+1,1) from contacts";
+            var result = db.Query(sql);
+            contact.Id = int.Parse(result[0][0]);
+
+            sql = "insert into contacts (id,first_name,last_name,phone,street_address,city) values (" +
+                      contact.Id + ",'" + contact.FirstName + "','" + contact.LastName + "','" +
+                      contact.Phone + "','" + contact.StreetAddress + "','" + contact.City + "')";
 
             int i = db.Update(sql);
 
             db.Close();
 
-            return (i > 0);
+            return (i > 0) ? contact.Id : -1;
         }
 
         /// <summary>
@@ -56,7 +60,7 @@ namespace ContactService.Services
         /// <returns></returns>
         public static bool DeleteContact(Contact contact)
         {
-            var sql = "delete from contacts where first_name='" + contact.FirstName + "' and last_name='" + contact.LastName + "'";
+            var sql = "delete from contacts where id=" + contact.Id;
             var db = Database.GetConnection();
             int i = db.Update(sql);
 
@@ -73,10 +77,8 @@ namespace ContactService.Services
         public static bool ModifyContact(Contact contact)
         {
             var sql = "update contacts set first_name='" + contact.FirstName + "',last_name='" + contact.LastName +
-                      "',phone='" +
-                      contact.Phone + "',street_address='" + contact.StreetAddress + "',city='" + contact.City +
-                      "' where first_name='" +
-                      contact.OriginalFirstName + "' and last_name='" + contact.OriginalLastName + "'";
+                      "',phone='" + contact.Phone + "',street_address='" + contact.StreetAddress +
+                      "',city='" + contact.City + "' where id=" + contact.Id;
             var db = Database.GetConnection();
             int i = db.Update(sql);
 

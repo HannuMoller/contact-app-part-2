@@ -19,29 +19,40 @@ function saveContact() {
 
     var index = $('#index').val();
     if (index < 0) {
-        contacts.push(contact);
-        $.ajax("http://localhost:50172/api/contacts",
+        var jqxhr = $.ajax("http://localhost:50172/api/contacts",
             {
                 method: "POST",
                 contentType : 'application/json',
-                data: JSON.stringify(contact)
+                data: JSON.stringify(contact),
+                complete: function(xhr,status) {
+                    contact.Id = xhr.responseText;
+                    if (contact.Id > 0) {
+                        contacts.push(contact);
+                        PostSaveContact();
+                    }
+                }
             });
     } else {
-        contact.OriginalFirstName = contacts[index].FirstName;
-        contact.OriginalLastName = contacts[index].LastName;
+        contact.Id = contacts[index].Id;
 
         $.ajax("http://localhost:50172/api/contacts",
             {
                 method: "PUT",
                 contentType : 'application/json',
-                data: JSON.stringify(contact)
+                data: JSON.stringify(contact),
+                complete: function(xhr,status) {
+                    contacts[index] = contact;
+                    PostSaveContact();
+                }
             });
 
-        contacts[index] = contact;
         $('#index').val(-1);
         $('#save').html('Add Contact');
         $('#formheader').html('New Contact');
     }
+}
+
+function PostSaveContact() {
 
     showContacts(contacts);
 
