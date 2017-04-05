@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Contact} from "../../contact";
 
 @Component({
   selector: 'app-contact-list-item',
@@ -7,9 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactListItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() contact: Contact;
+  @Output() edit: EventEmitter<Contact>;
+  @Output() remove: EventEmitter<Contact>;
+  @Output() showOnMap: EventEmitter<Contact>;
 
-  ngOnInit() {
+  constructor() {
+    this.edit = new EventEmitter<Contact>();
+    this.remove = new EventEmitter<Contact>();
+    this.showOnMap = new EventEmitter<Contact>();
   }
 
+  ngOnInit() {
+
+  }
+
+  editContact() {
+    alert('editContact @contact-list-item');
+    this.edit.emit(this.contact);
+  }
+
+  removeContact() {
+    alert('removeContact @contact-list-item');
+    this.remove.emit(this.contact);
+  }
+
+  showContactOnMap() {
+    alert('showContactOnMap @contact-list-item');
+    this.showOnMap.emit(this.contact);
+  }
 }

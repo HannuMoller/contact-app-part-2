@@ -1,3 +1,28 @@
-<p>
-  contact-list-item works!
-</p>
+<md-card>
+  <md-card-header>
+    <md-card-title>
+      Contact
+    </md-card-title>
+  </md-card-header>
+  <md-card-content>
+      <ul>
+      <li>{{contact.firstName}}</li>
+      <li>{{contact.lastName}}</li>
+      <li>{{contact.phone}}</li>
+      <li>{{contact.streetAddress}}</li>
+      <li>{{contact.city}}</li>
+      </ul>
+    </md-card-content>
+  <md-card-actions>
+    <button md-fab (click)="editContact()">
+      <md-icon>create</md-icon>
+    </button>
+    <button md-fab (click)="removeContact()">
+      <md-icon>delete_sweep</md-icon>
+    </button>
+    <button md-fab (click)="showContactOnMap()">
+      <md-icon>place</md-icon>
+    </button>
+  </md-card-actions>
+
+</md-card>

@@ -1,3 +1,5 @@
-<p>
-  contact-list works!
-</p>
+<div *ngFor="let contact of contacts">
+  <app-contact-list-item [contact]="contact" (edit)="edit($event)" (remove)="remove($event)" (showOnMap)="showOnMap($event)">
+    contact-list works!
+  </app-contact-list-item>
+</div>

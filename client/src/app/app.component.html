@@ -1,3 +1,17 @@
-<h1>
+<h3>
   {{title}}
-</h1>
+</h3>
+<div>
+<div fxLayout="column" fxLayoutAlign="space-between center">
+  <app-contact-list [contacts]="contacts" (editContact)="editContact($event)" (removeContact)="removeContact($event)" (showContactOnMap)="showContactOnMap($event)">
+    Loading...
+  </app-contact-list>
+
+</div>
+<!-- ADD button here -->
+  <div fxLayoutAlign="end end">
+    <button md-fab (click)="addContact()">
+      <md-icon>add_circle</md-icon>
+    </button>
+  </div>
+</div>
