@@ -1,0 +1,31 @@
+<div>
+  <div md-dialog-title>
+    {{titleText}}
+  </div>
+  <div md-dialog-content>
+    <md-input-container floatPlaceholder="auto">
+      <input mdInput [(ngModel)]="clonedContact.firstName" type="text" required
+             placeholder="Firstname">
+    </md-input-container>
+    <md-input-container floatPlaceholder="auto">
+      <input mdInput [(ngModel)]="clonedContact.lastName" type="text" required
+             placeholder="Lastname">
+    </md-input-container>
+    <md-input-container floatPlaceholder="auto">
+      <input mdInput [(ngModel)]="clonedContact.phone" type="text" required
+             placeholder="Phone">
+    </md-input-container>
+    <md-input-container floatPlaceholder="auto">
+      <input mdInput [(ngModel)]="clonedContact.streetAddress" type="text" required
+             placeholder="Street Address">
+    </md-input-container>
+    <md-input-container floatPlaceholder="auto">
+      <input mdInput [(ngModel)]="clonedContact.city" type="text" required
+             placeholder="City">
+    </md-input-container>
+  </div>
+  <div md-dialog-actions="">
+    <button md-raised-button color="primary" (click)="save()">{{saveText}}</button>
+    <button md-raised-button color="accent" (click)="cancel()">Cancel</button>
+  </div>
+</div>

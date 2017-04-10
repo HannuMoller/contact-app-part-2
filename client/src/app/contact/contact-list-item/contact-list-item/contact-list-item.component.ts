@@ -24,17 +24,17 @@ export class ContactListItemComponent implements OnInit {
   }
 
   editContact() {
-    alert('editContact @contact-list-item');
+    //( alert('editContact @contact-list-item');
     this.edit.emit(this.contact);
   }
 
   removeContact() {
-    alert('removeContact @contact-list-item');
+    // alert('removeContact @contact-list-item');
     this.remove.emit(this.contact);
   }
 
   showContactOnMap() {
-    alert('showContactOnMap @contact-list-item');
+    // alert('showContactOnMap @contact-list-item');
     this.showOnMap.emit(this.contact);
   }
 }
