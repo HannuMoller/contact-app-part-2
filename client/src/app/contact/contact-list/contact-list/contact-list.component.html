@@ -1,5 +1,5 @@
 <div *ngFor="let contact of contacts">
-  <app-contact-list-item [contact]="contact" (edit)="edit($event)" (remove)="remove($event)" (showOnMap)="showOnMap($event)">
+  <app-contact-list-item [contact]="contact" [editContact]="editContact" [removeContact]="removeContact" [showContactOnMap]="showContactOnMap">
     contact-list works!
   </app-contact-list-item>
 </div>

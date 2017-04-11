@@ -12,8 +12,12 @@
       </ul>
     </md-card-content>
   </md-dialog-content>
-  <md-dialog-actions>
-    <button md-raised-button color="primary" (click)="delete()">Delete</button>
-    <button md-raised-button color="accent" (click)="cancel()">Cancel</button>
+  <md-dialog-actions fxLayoutAlign="space-around end">
+    <button md-mini (click)="delete()">
+      <md-icon>delete</md-icon>
+    </button>
+    <button md-mini (click)="cancel()">
+      <md-icon>cancel</md-icon>
+    </button>
   </md-dialog-actions>
 

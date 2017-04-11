@@ -21,19 +21,4 @@ export class ContactListComponent implements OnInit {
   ngOnInit() {
   }
 
-  edit(contact: Contact) {
-    // alert('edit @contact-list');
-    this.editContact.emit(contact);
-  }
-
-  remove(contact: Contact) {
-    // alert('remove @contact-list');
-    this.removeContact.emit(contact);
-  }
-
-  showOnMap(contact: Contact) {
-    // alert('showOnMap @contact-list');
-    this.showContactOnMap.emit(contact);
-  }
-
 }

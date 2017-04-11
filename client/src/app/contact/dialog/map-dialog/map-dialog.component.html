@@ -3,8 +3,10 @@
     <p>
       <iframe [src]="mapUrl()"></iframe>
     </p>
-    <div class="map-dialog-action" fxLayoutAlign="center">
-      <button md-raised-button md-dialog-close color="primary">Close</button>
-    </div>
+    <md-dialog-actions fxLayoutAlign="center end">
+      <button md-mini md-dialog-close color="primary">
+        <md-icon>check_box</md-icon>
+      </button>
+    </md-dialog-actions>
   </div>
 </div>
