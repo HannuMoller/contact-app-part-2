@@ -50,8 +50,8 @@ export class AppComponent {
   }
 
   showContactOnMap(contact: Contact) {
-    alert('show contact #'+contact.id+' on map');
-    let resultValue = this.dialogServiceRef.mapDialog(contact.streetAddress, contact.city);
+    // alert('show contact #'+contact.id+' on map');
+    let resultValue = this.dialogServiceRef.mapDialog(contact);
     resultValue.subscribe();
   }
 

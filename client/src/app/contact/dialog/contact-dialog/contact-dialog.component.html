@@ -24,8 +24,12 @@
              placeholder="City">
     </md-input-container>
   </div>
-  <div md-dialog-actions="">
-    <button md-raised-button color="primary" (click)="save()">{{saveText}}</button>
-    <button md-raised-button color="accent" (click)="cancel()">Cancel</button>
+  <div md-dialog-actions="" fxLayoutAlign="center">
+      <button md-mini (click)="save()">
+        <md-icon>check</md-icon>
+      </button>
+      <button md-mini (click)="cancel()">
+        <md-icon>cancel</md-icon>
+      </button>
   </div>
 </div>

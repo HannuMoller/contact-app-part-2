@@ -1,26 +1,27 @@
-<md-card>
-  <md-card-header>
-    <md-card-title>
-      Contact
-    </md-card-title>
-  </md-card-header>
+<md-card class="card">
+  <md-card-content layout-align="left" class="card-header">
+    <dl>
+      <b>
+        <dt>{{contact.firstName}}</dt>
+        <dt>{{contact.lastName}}</dt>
+      </b>
+    </dl>
+  </md-card-content>
   <md-card-content>
-      <ul>
-      <li>{{contact.firstName}}</li>
-      <li>{{contact.lastName}}</li>
-      <li>{{contact.phone}}</li>
-      <li>{{contact.streetAddress}}</li>
-      <li>{{contact.city}}</li>
-      </ul>
-    </md-card-content>
-  <md-card-actions>
-    <button md-fab (click)="editContact()">
+    <dl>
+      <dt>{{contact.phone}}</dt>
+      <dt>{{contact.streetAddress}}</dt>
+      <dt>{{contact.city}}</dt>
+    </dl>
+  </md-card-content>
+  <md-card-actions fxLayout="row" fxLayoutAlign="space-between end">
+    <button md-mini (click)="editContact()">
       <md-icon>create</md-icon>
     </button>
-    <button md-fab (click)="removeContact()">
-      <md-icon>delete_sweep</md-icon>
+    <button md-mini (click)="removeContact()">
+      <md-icon>delete_forever</md-icon>
     </button>
-    <button md-fab (click)="showContactOnMap()">
+    <button md-mini (click)="showContactOnMap()">
       <md-icon>place</md-icon>
     </button>
   </md-card-actions>

@@ -1,0 +1,17 @@
+.card {
+  margin: 10px;
+  background-color: lemonchiffon;
+}
+
+.card-header {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.card-title {
+  font-size: large;
+}
+
+.card-list {
+  align-items: flex-start;
+}

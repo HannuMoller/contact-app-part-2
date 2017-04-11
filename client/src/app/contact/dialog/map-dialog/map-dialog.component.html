@@ -1,5 +1,10 @@
-<p>
-  map-dialog works!
-  <br/>
-  {{address}}
-</p>
+<div md-dialog-content>
+  <div md-dialog-content>
+    <p>
+      <iframe [src]="mapUrl()"></iframe>
+    </p>
+    <div class="map-dialog-action" fxLayoutAlign="center">
+      <button md-raised-button md-dialog-close color="primary">Close</button>
+    </div>
+  </div>
+</div>
