@@ -1,7 +1,7 @@
 # contact-app-part-2
 WEB API, REST, AJAX, JSON, HTML, CSS, C#, SQL
 
-Client with html, javascript, stylesheets, ajax
+Client with HTML, TypeScript, Angular4, cascading stylesheets, ajax
 
 Server with C#, WEB API, REST
 
