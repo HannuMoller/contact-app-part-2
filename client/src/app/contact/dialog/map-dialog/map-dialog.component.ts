@@ -12,7 +12,6 @@ export class MapDialogComponent implements OnInit {
 
   contact: Contact;
   address: string;
-  private ApiKey: string = "AIzaSyBMfOAnLqyJjtIMN7ju9mFACvHHeZCowUo";
 
   constructor(private dialogRef: MdDialogRef<MapDialogComponent>, public sanitizer: DomSanitizer) {
 
@@ -20,7 +19,6 @@ export class MapDialogComponent implements OnInit {
 
   ngOnInit() {
     this.address = this.contact.streetAddress + ', ' + this.contact.city;
-    // this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/place?q=" + this.address + "&zoom=17&key=" + this.ApiKey);
   }
 
   public ok() {
@@ -28,7 +26,7 @@ export class MapDialogComponent implements OnInit {
   }
 
   mapUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl("http://www.google.com/maps/embed/v1/place?q=" + this.address + "&zoom=15&key=" + this.ApiKey);
+    return this.sanitizer.bypassSecurityTrustResourceUrl("https://maps.google.com/maps?q=" + this.address + "&output=embed");
   }
 
 }

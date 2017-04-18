@@ -14,9 +14,6 @@ export class ContactListItemComponent implements OnInit {
   @Input() showContactOnMap: EventEmitter<Contact>;
 
   constructor() {
-    this.editContact = new EventEmitter<Contact>();
-    this.removeContact = new EventEmitter<Contact>();
-    this.showContactOnMap = new EventEmitter<Contact>();
   }
 
   ngOnInit() {

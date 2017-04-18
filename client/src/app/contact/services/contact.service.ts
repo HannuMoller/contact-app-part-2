@@ -10,11 +10,6 @@ export class ContactService {
 
   constructor() {
     if (!localStorage.getItem(this.storageKey)) {
-      // -------------------------------------------------------------------------------------------
-      // These for testing purposes; remove when project fully functional
-      this.contacts.push(new Contact(1,'Jaakko','Parantainen','040-5123624','Sairaalantie 4','Lempäälä'));
-      this.contacts.push(new Contact(2,'Aku','Ankka','05-313','Paratiisitie 4','Ankkalinna'));
-      // -------------------------------------------------------------------------------------------
       localStorage.setItem(this.storageKey, JSON.stringify(this.contacts));
     }
 
