@@ -17,21 +17,35 @@ Sandbox testing environment:
 
 ### Local Storage
 
-In _IntelliJ IDEA_ in it's Terminal window execute command:
+- start IntelliJ IDEA
+  - open client project
+  - in Terminal window execute command:
 
     ng serve --environment=local
     
 This allows definitions in file _environment.local.ts_ to be used.
+No real backend system is used in this case, so VirtualBox and Microsoft Visual Studio are not needed.
 
 ### Database
 
 #### Requirements
 - VirtualBox installed
-- Mint Linux installed in VirtualBox
-- MariaDB installed in Mint Linux
+  - Mint Linux installed
+    - MariaDB installed 
+      - database created
+        - table _contacts_ created
 - MariaDB socket tunneling enabled
-- database created, table _contacts_ created
 
-1. Start VirtualBox
-2. In VirtualBox, start Mint Linux
-3. 
+- start VirtualBox
+  - start Mint Linux
+- start Microsoft Visual Studio
+  - open project file _ContactService.sln_
+  - start service
+- start IntelliJ IDEA
+  - open client project
+  - in Terminal window execute command:
+
+    ng serve --environment=dev
+    
+This allows environment definition file _environment.dev.ts_ to be used.
+Client will be use server's REST API to retrieve and store data (contacts).
