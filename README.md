@@ -17,6 +17,8 @@ Sandbox testing environment:
 
 ### Local Storage
 
+#### Setting system up
+
 - start IntelliJ IDEA
   - open client project
   - in Terminal window execute command:
@@ -29,12 +31,15 @@ No real backend system is used in this case, so VirtualBox and Microsoft Visual 
 ### Database
 
 #### Requirements
+
 - VirtualBox installed
   - Mint Linux installed
     - MariaDB installed 
       - database created
         - table _contacts_ created
 - MariaDB socket tunneling enabled
+
+#### Setting system up
 
 - start VirtualBox
   - start Mint Linux
