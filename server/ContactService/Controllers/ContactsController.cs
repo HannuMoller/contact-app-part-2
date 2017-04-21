@@ -21,23 +21,23 @@ namespace ContactService.Controllers
         }
 
         [HttpPost]
-        public int AddContact([FromBody]Contact contact)
+        public Contact AddContact([FromBody]Contact contact)
         {
             contact.Id =Services.ContactService.AddContact(contact);
             if (contact.Id > 0)
             {
-                return contact.Id;
+                return contact;
             }
             else
             {
-                return -1;
+                return contact;
             }
         }
 
         [HttpDelete]
-        public IHttpActionResult RemoveContact([FromBody]Contact contact)
+        public IHttpActionResult RemoveContact(int ID)
         {
-            if (Services.ContactService.DeleteContact(contact))
+            if (Services.ContactService.DeleteContact(ID))
             {
                 return Ok();
             }
@@ -48,9 +48,9 @@ namespace ContactService.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult ModifyContact([FromBody]Contact contact)
+        public IHttpActionResult ModifyContact(int ID, [FromBody]Contact contact)
         {
-            if (Services.ContactService.ModifyContact(contact))
+            if (Services.ContactService.ModifyContact(ID, contact))
             {
                 return Ok();
             }
