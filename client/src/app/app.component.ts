@@ -1,68 +1,36 @@
-import { Component, ViewChild } from '@angular/core';
-import {ContactService} from "./contact/services/contact.service";
-import {Contact} from "./contact/contact";
-import { DialogService } from "./contact/services/dialog.service";
+import { Component, Injectable } from '@angular/core';
+import {Router} from "@angular/router";
+import {Listener} from "./util/listener";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+@Injectable()
 export class AppComponent {
+
   title = 'Contact App, Angular 4 version';
 
-  contacts: Contact[];
-  contactText: string;
-  dialogServiceRef: DialogService;
-  contactServiceRef: ContactService;
+  sidenavMode = 'side';
 
-  constructor(contactService: ContactService, dialogService: DialogService) {
-    this.contacts = contactService.findContacts();
-    // alert('contacts:'+this.contacts.length);
-    this.contactText = this.contacts[0].firstName;
-    this.dialogServiceRef = dialogService;
-    this.contactServiceRef = contactService;
+  constructor(private router: Router) {
   }
 
-  editContact(contact: Contact) {
-    // alert('edit contact #'+contact.id);
-    let returnValue = this.dialogServiceRef.contactDialog(contact);
-    returnValue.subscribe(result => {
-      if (!result) {
-        return;
-      }
-      this.contactServiceRef.saveContact(result);
-    });
-
-  }
-
-
-  removeContact(contact: Contact) {
-    // alert('remove contact #'+contact.id);
-    let returnValue = this.dialogServiceRef.deleteDialog(contact);
-    returnValue.subscribe(result => {
-      if (!result) {
-        return;
-      }
-      this.contactServiceRef.removeContact(result);
-    });
-
-  }
-
-  showContactOnMap(contact: Contact) {
-    // alert('show contact #'+contact.id+' on map');
-    let resultValue = this.dialogServiceRef.mapDialog(contact);
-    resultValue.subscribe();
+  logout() {
+    // alert(`user: ${this.uid}, password: ${this.pwd}`);
+    this.router.navigate(['login']);
   }
 
   addContact() {
-    // alert('Maybe I add, maybe not...');
-    let returnValue = this.dialogServiceRef.contactDialog();
-    returnValue.subscribe(result => {
-      if (!result) {
-        return;
-      }
-      this.contactServiceRef.addContact(result);
-    });
+    if (Listener.getComponent()) {
+      Listener.getComponent().addContact();
+    }
+    else
+    {
+      alert('Login first!');
+    }
   }
+
 }

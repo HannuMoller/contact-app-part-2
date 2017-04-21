@@ -1,0 +1,22 @@
+<div class="login">
+
+  <div md-dialog-title class="title">
+    <h3>{{titleText}}</h3>
+  </div>
+  <div md-dialog-content fxLayout="column">
+    <md-input-container floatPlaceholder="auto">
+      <input mdInput [(ngModel)]="uid" type="text" required
+             placeholder="Username">
+    </md-input-container>
+    <md-input-container floatPlaceholder="auto">
+      <input mdInput [(ngModel)]="pwd" type="password" required
+             placeholder="Password">
+    </md-input-container>
+  </div>
+  <md-dialog-actions fxLayoutAlign="space-around end">
+    <button md-button (click)="login()">
+      LOGIN
+    </button>
+  </md-dialog-actions>
+
+</div>

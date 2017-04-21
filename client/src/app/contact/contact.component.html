@@ -1,0 +1,7 @@
+<div fxLayoutAlign="center">
+  <div fxLayout="column" fxLayoutAlign="space-around center" class="app-body">
+    <app-contact-list [contacts]="contacts" (editContact)="editContact($event)" (removeContact)="removeContact($event)" (showContactOnMap)="showContactOnMap($event)" class="app-contact-list">
+      Loading...
+    </app-contact-list>
+  </div>
+</div>

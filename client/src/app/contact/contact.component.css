@@ -1,0 +1,7 @@
+.fabb {
+  z-index: 100;
+  position: fixed;
+  float: right;
+  right: 50px;
+  bottom: 10px;
+}

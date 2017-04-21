@@ -1,5 +1,6 @@
 .card {
-  width: 200px;
+  max-width: 800px;
+  min-width: 200px;
   margin: 10px;
   background-color: lemonchiffon;
 }
@@ -11,8 +12,13 @@
 
 .card-title {
   font-size: large;
+  align-items: center;
 }
 
 .card-list {
   align-items: flex-start;
+}
+
+.my-icon {
+  float: left;
 }

@@ -1,53 +1,32 @@
 import { Injectable } from '@angular/core';
+import {ContactHttpService} from "./contact-http.service";
+import {ContactLocalStorageService} from "./contact-local-storage.service";
+import {ContactStorage} from "./contact-storage";
 import {Contact} from "../contact";
+import {environment} from "../../../environments/environment";
+
 
 @Injectable()
 export class ContactService {
 
-  private storageKey:string = 'contacts';
+  private contactService: ContactStorage;
 
-  private contacts: Contact[] = [];
-
-  constructor() {
-    if (!localStorage.getItem(this.storageKey)) {
-      localStorage.setItem(this.storageKey, JSON.stringify(this.contacts));
-    }
-
-    this.contacts = JSON.parse(localStorage.getItem(this.storageKey));
+  constructor(private contactHttpService: ContactHttpService, private contactLocalStorageService: ContactLocalStorageService) {
+    this.contactService = environment.serverUrl ? contactHttpService : contactLocalStorageService;
   }
 
-  public findContacts(): Contact[] {
-    return this.contacts;
-  }
-
-  public saveContacts(contacts: Contact[]) {
-    this.contacts = contacts;
-    localStorage.setItem(this.storageKey, JSON.stringify(contacts));
+  public findContacts() {
+    return this.contactService.findContacts();
   }
 
   public saveContact(contact: Contact) {
-    let index = this.contacts.findIndex(c => c.id == contact.id);
-    this.contacts[index] = contact;
-    this.saveContacts(this.contacts);
+    return this.contactService.saveContact(contact);
   }
 
   public removeContact(contact: Contact) {
-    let index = this.contacts.findIndex(c => c.id == contact.id);
-    this.contacts.splice(index,1);
-    this.saveContacts(this.contacts);
+    return this.contactService.removeContact(contact);
   }
-
   public addContact(contact: Contact) {
-    let nextId = 0;
-    let lastId = this.contacts.map(function (c) {
-      if (c.id > nextId) {
-        nextId = c.id
-      }
-    });
-    nextId++;
-    contact.id = nextId;
-    this.contacts.push(contact);
-    this.saveContacts(this.contacts);
+    return this.contactService.addContact(contact);
   }
-
 }

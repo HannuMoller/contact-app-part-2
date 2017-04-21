@@ -9,11 +9,34 @@ import { AppComponent } from './app.component';
 import { ContactListComponent } from './contact/contact-list/contact-list/contact-list.component';
 import { ContactListItemComponent } from './contact/contact-list-item/contact-list-item/contact-list-item.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { ContactService } from "./contact/services/contact.service";
 import { ContactDialogComponent } from './contact/dialog/contact-dialog/contact-dialog.component';
 import { DialogService } from "./contact/services/dialog.service";
 import { MapDialogComponent } from './contact/dialog/map-dialog/map-dialog.component';
 import { DeleteDialogComponent } from './contact/dialog/delete-dialog/delete-dialog.component';
+import {ContactHttpService} from "./contact/services/contact-http.service";
+import {ContactLocalStorageService} from "./contact/services/contact-local-storage.service";
+import { ContactAddressPipe } from './contact/pipes/contact-address.pipe';
+import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './user/login/login.component';
+import { RouterModule } from '@angular/router';
+import 'hammerjs';
+import {ContactService} from "./contact/services/contact.service";
+
+const routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -22,7 +45,10 @@ import { DeleteDialogComponent } from './contact/dialog/delete-dialog/delete-dia
     ContactListItemComponent,
     ContactDialogComponent,
     MapDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    ContactAddressPipe,
+    ContactComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,12 +56,16 @@ import { DeleteDialogComponent } from './contact/dialog/delete-dialog/delete-dia
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RouterModule.forRoot(routes)
   ],
   entryComponents: [ContactDialogComponent,
                     MapDialogComponent,
                     DeleteDialogComponent],
   providers: [ContactService,
+              ContactComponent,
+              ContactLocalStorageService,
+              ContactHttpService,
               DialogService],
   bootstrap: [AppComponent]
 })

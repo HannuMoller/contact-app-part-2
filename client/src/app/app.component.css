@@ -1,5 +1,5 @@
 .app-body {
-  width: 220px;
+  // width: 220px;
 }
 
 .app-contact-list {
@@ -7,4 +7,30 @@
 }
 .app-actions {
   float: left;
+}
+
+.my-toolbar {
+  z-index: 100;
+  float: inherit;
+  position: fixed;
+  width: 100%;
+}
+
+.my-button {
+  z-index: 100;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+
+.my-sidebar {
+  height: 90%;
+  width: 100%;
+  top: 80px;
+  position: fixed;
+}
+
+.my-routers {
+  position: auto;
+  top: 10px;
 }

@@ -1,19 +1,28 @@
 <md-card class="card">
-  <md-card-content layout-align="left" class="card-header">
-    <dl>
-      <b>
-        <dt>{{contact.firstName}}</dt>
-        <dt>{{contact.lastName}}</dt>
-      </b>
-    </dl>
-  </md-card-content>
-  <md-card-content>
-    <dl>
-      <dt>{{contact.phone}}</dt>
-      <dt>{{contact.streetAddress}}</dt>
-      <dt>{{contact.city}}</dt>
-    </dl>
-  </md-card-content>
+
+  <md-card-header>
+<!--
+    <md-icon class="my-icon" style="font-size: 50px">account_circle</md-icon>
+    -->
+
+    <div md-card-avatar fxLayoutAlign="center center">
+    <i class="material-icons" style="font-size: 48px">account_circle</i>
+    </div>
+    <md-card-title>
+      <div style="font-size: 24px">
+      {{contact.firstName}}
+        <br>
+      {{contact.lastName}}
+      </div>
+      <dl>
+        <dt>{{contact.phone}}</dt>
+        <dt>{{contact | contactAddress}}</dt>
+        <!-- <dt>{{contact.city}}</dt> -->
+      </dl>
+    </md-card-title>
+
+  </md-card-header>
+
   <md-card-actions fxLayout="row" fxLayoutAlign="space-between end">
     <button md-mini (click)="edit()">
       <md-icon>create</md-icon>
@@ -22,7 +31,7 @@
       <md-icon>delete_forever</md-icon>
     </button>
     <button md-mini (click)="showOnMap()">
-      <md-icon>place</md-icon>
+      <md-icon>person_pin_circle</md-icon>
     </button>
   </md-card-actions>
 
