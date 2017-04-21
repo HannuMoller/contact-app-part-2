@@ -26,7 +26,8 @@ Sandbox testing environment:
     ng serve --environment=local
     
 This allows definitions in file _environment.local.ts_ to be used.
-No real backend system is used in this case, so VirtualBox and Microsoft Visual Studio are not needed.
+
+No real backend system is used in this case (Local Storage is used at client's side to store data), so VirtualBox and Microsoft Visual Studio are not needed.
 
 ### Database
 
@@ -53,4 +54,5 @@ No real backend system is used in this case, so VirtualBox and Microsoft Visual 
     ng serve --environment=dev
     
 This allows environment definition file _environment.dev.ts_ to be used.
+
 Client will be use server's REST API to retrieve and store data (contacts).
