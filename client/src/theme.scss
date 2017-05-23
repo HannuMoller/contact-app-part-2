@@ -1,7 +1,26 @@
-@import '~@angular/material/core/theming/all-theme';
-@include md-core();
-$primary: md-palette($md-orange, 800);
-$accent:  md-palette($md-light-blue, 600, A100, A400);
-$warn:    md-palette($md-red, 600);
-$theme: md-light-theme($primary, $accent, $warn);
+@import '~@angular/material/theming';
+@include mat-core();
+
+$ca-primary: mat-palette($mat-orange, 800);
+$ca-accent:  mat-palette($mat-light-blue, 600, A100, A400);
+$ca-warn:    mat-palette($mat-red, 600);
+
+$theme: mat-light-theme($ca-primary, $ca-accent, $ca-warn);
+
 @include angular-material-theme($theme);
+
+.ca-color-primary {
+  background: mat-color($ca-primary);
+}
+
+.ca-color-primary-light {
+  background: #58a5f0;
+}
+
+.ca-color-primary-dark {
+  background: #003c8f;
+}
+
+.ca-color-accent {
+  background: mat-color($ca-accent);
+}

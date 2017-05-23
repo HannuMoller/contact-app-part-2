@@ -9,8 +9,10 @@ using System.Web.Http.Cors;
 using ContactService.DB;
 using ContactService.Models;
 
+
 namespace ContactService.Controllers
 {
+    [RoutePrefix("api/contacts")]
     public class ContactsController : ApiController
     {
 
@@ -35,9 +37,10 @@ namespace ContactService.Controllers
         }
 
         [HttpDelete]
-        public IHttpActionResult RemoveContact(int ID)
+        [Route("{id}")]
+        public IHttpActionResult RemoveContact(int id)
         {
-            if (Services.ContactService.DeleteContact(ID))
+            if (Services.ContactService.DeleteContact(id))
             {
                 return Ok();
             }
@@ -48,9 +51,10 @@ namespace ContactService.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult ModifyContact(int ID, [FromBody]Contact contact)
+        [Route("{id}")]
+        public IHttpActionResult ModifyContact(int id, [FromBody]Contact contact)
         {
-            if (Services.ContactService.ModifyContact(ID, contact))
+            if (Services.ContactService.ModifyContact(id, contact))
             {
                 return Ok();
             }

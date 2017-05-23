@@ -6,37 +6,43 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {ContactStorage} from "./contact-storage";
 import { environment } from "../../../environments/environment";
+import {HttpService} from "./http.service";
 
 @Injectable()
 export class ContactHttpService implements ContactStorage {
 
   private serverUrl: string = environment.serverUrl;
 
-  constructor(private http: Http) {
+  constructor(private http: HttpService) {
   }
 
   public findContacts() {
     return this.http.get(this.serverUrl)
-      .map(resp => this.downshift(resp)
-      );
+      .map(resp => this.downshift(resp))
+//      .catch(error => this.handleError(error))
+      ;
   }
 
-  downshift(resp): Contact[] {
-    var contacts = resp.json();
-    let i = contacts.length;
-    var contact;
-    while (i > 0) {
-      i--;
-      contact = contacts[i];
-      for (var key in contact) {
-        if (contact.hasOwnProperty(key)) {
-          let value = contact[key];
-          delete contact[key];
-          contact[this.lowerize(key)] = value;
+  downshift(resp: Response): Contact[]|any {
+    if (resp.status != 200) {
+      return resp;
+    } else {
+      var contacts = resp.json();
+      let i = contacts.length;
+      var contact;
+      while (i > 0) {
+        i--;
+        contact = contacts[i];
+        for (var key in contact) {
+          if (contact.hasOwnProperty(key)) {
+            let value = contact[key];
+            delete contact[key];
+            contact[this.lowerize(key)] = value;
+          }
         }
       }
+      return contacts;
     }
-    return contacts;
   }
 
   private lowerize(s) {
@@ -81,7 +87,8 @@ export class ContactHttpService implements ContactStorage {
 
     return this.http.request(this.serverUrl+contact.id, options)
       .map(this.extractData)
-      .catch(this.handleError);
+//      .catch(this.handleError)
+      ;
   }
 
   public removeContact(contact: Contact) { // DELETE
@@ -95,7 +102,8 @@ export class ContactHttpService implements ContactStorage {
 
     return this.http.request(this.serverUrl+contact.id, options)
       .map(this.extractData)
-      .catch(this.handleError);
+//      .catch(this.handleError)
+      ;
   }
 
   public addContact(contact: Contact) { // POST
@@ -110,7 +118,8 @@ export class ContactHttpService implements ContactStorage {
 
     return this.http.request(this.serverUrl, options)
       .map(this.extractData)
-      .catch(this.handleError);
+//      .catch(this.handleError)
+      ;
   }
 
 }

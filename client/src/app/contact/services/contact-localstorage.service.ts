@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Contact} from "../contact";
 import {ContactStorage} from "./contact-storage";
 import {Observable} from "rxjs/Observable";
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class ContactLocalStorageService implements ContactStorage {
@@ -15,10 +16,11 @@ export class ContactLocalStorageService implements ContactStorage {
       localStorage.setItem(this.storageKey, JSON.stringify(this.contacts));
     }
 
-    this.contacts = JSON.parse(localStorage.getItem(this.storageKey));
+    this.findContacts();
   }
 
   public findContacts() {
+    this.contacts = JSON.parse(localStorage.getItem(this.storageKey));
     return Observable.of(this.contacts);
   }
 
@@ -28,6 +30,7 @@ export class ContactLocalStorageService implements ContactStorage {
   }
 
   public saveContact(contact: Contact) {
+    this.findContacts();
     let index = this.contacts.findIndex(c => c.id == contact.id);
     this.contacts[index] = contact;
     this.saveContacts(this.contacts);
@@ -35,6 +38,7 @@ export class ContactLocalStorageService implements ContactStorage {
   }
 
   public removeContact(contact: Contact) {
+    this.findContacts();
     let index = this.contacts.findIndex(c => c.id == contact.id);
     this.contacts.splice(index,1);
     this.saveContacts(this.contacts);
@@ -42,6 +46,7 @@ export class ContactLocalStorageService implements ContactStorage {
   }
 
   public addContact(contact: Contact) {
+    this.findContacts();
     let nextId = 0;
     let lastId = this.contacts.map(function (c) {
       if (c.id > nextId) {

@@ -4,3 +4,5 @@
 /server/ContactService/bin
 /server/ContactService/DB/db.json
 /client/client.iml
+bin
+obj

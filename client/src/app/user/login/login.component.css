@@ -7,3 +7,12 @@
 .title {
   text-align: center;
 }
+
+.login-card {
+  width: 400px;
+  height: 300px;
+}
+
+.login-icon-padding{
+  padding-right: 20px;
+}

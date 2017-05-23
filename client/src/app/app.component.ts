@@ -1,6 +1,6 @@
-import { Component, Injectable } from '@angular/core';
+import {Component, HostListener, Injectable} from '@angular/core';
 import {Router} from "@angular/router";
-import {Listener} from "./util/listener";
+import {HttpService} from "./contact/services/http.service";
 
 @Component({
   selector: 'app-root',
@@ -15,22 +15,24 @@ export class AppComponent {
 
   sidenavMode = 'side';
 
-  constructor(private router: Router) {
+  public email: string;
+  public name: string;
+
+  constructor(private router: Router, private http: HttpService) {
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event) {
+    let width = event ? event.target.innerWidth : window.innerWidth;
+    this.sidenavMode = width >= 600 ? 'side' : 'over';
   }
 
   logout() {
-    // alert(`user: ${this.uid}, password: ${this.pwd}`);
+    this.email = '';
+    this.name = '';
+    // actively forget token
+    this.http.saveToken('');
     this.router.navigate(['login']);
-  }
-
-  addContact() {
-    if (Listener.getComponent()) {
-      Listener.getComponent().addContact();
-    }
-    else
-    {
-      alert('Login first!');
-    }
   }
 
 }

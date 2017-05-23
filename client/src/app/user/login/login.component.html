@@ -1,22 +1,21 @@
-<div class="login">
-
-  <div md-dialog-title class="title">
-    <h3>{{titleText}}</h3>
-  </div>
-  <div md-dialog-content fxLayout="column">
-    <md-input-container floatPlaceholder="auto">
-      <input mdInput [(ngModel)]="uid" type="text" required
-             placeholder="Username">
-    </md-input-container>
-    <md-input-container floatPlaceholder="auto">
-      <input mdInput [(ngModel)]="pwd" type="password" required
-             placeholder="Password">
-    </md-input-container>
-  </div>
-  <md-dialog-actions fxLayoutAlign="space-around end">
-    <button md-button (click)="login()">
-      LOGIN
+<md-card class="login-card" fxLayout="column" fxLayoutAlign="center center">
+  <md-card-content>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <md-icon class="material-icons color md-48 login-icon-padding">account_circle</md-icon>
+      <md-input-container>
+        <input mdInput type="text" [(ngModel)]="uid" placeholder="Username">
+      </md-input-container>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <md-icon class="material-icons color md-48 login-icon-padding">lock</md-icon>
+      <md-input-container>
+        <input mdInput type="password" [(ngModel)]="pwd" placeholder="Password">
+      </md-input-container>
+    </div>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="end center">
+    <button md-mini (click)="login()">
+      <md-icon>check_circle</md-icon>
     </button>
-  </md-dialog-actions>
-
-</div>
+  </md-card-actions>
+</md-card>

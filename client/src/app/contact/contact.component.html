@@ -3,5 +3,11 @@
     <app-contact-list [contacts]="contacts" (editContact)="editContact($event)" (removeContact)="removeContact($event)" (showContactOnMap)="showContactOnMap($event)" class="app-contact-list">
       Loading...
     </app-contact-list>
+    <div>
+      <button md-mini-fab class="my-button" (click)="addContact()">
+        <md-icon>add_circle</md-icon>
+      </button>
+    </div>
+
   </div>
 </div>

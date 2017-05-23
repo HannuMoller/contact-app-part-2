@@ -5,7 +5,7 @@
     <md-icon class="my-icon" style="font-size: 50px">account_circle</md-icon>
     -->
 
-    <div md-card-avatar fxLayoutAlign="center center">
+    <div md-card-avatar fxLayoutAlign="center start">
     <i class="material-icons" style="font-size: 48px">account_circle</i>
     </div>
     <md-card-title>
@@ -17,22 +17,25 @@
       <dl>
         <dt>{{contact.phone}}</dt>
         <dt>{{contact | contactAddress}}</dt>
-        <!-- <dt>{{contact.city}}</dt> -->
       </dl>
     </md-card-title>
 
   </md-card-header>
 
   <md-card-actions fxLayout="row" fxLayoutAlign="space-between end">
+    <div fxLayout="row" fxLayoutAlign="start">
     <button md-mini (click)="edit()">
       <md-icon>create</md-icon>
     </button>
     <button md-mini (click)="remove()">
       <md-icon>delete_forever</md-icon>
     </button>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end">
     <button md-mini (click)="showOnMap()">
       <md-icon>person_pin_circle</md-icon>
     </button>
+    </div>
   </md-card-actions>
 
 </md-card>

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -13,14 +13,16 @@ import { ContactDialogComponent } from './contact/dialog/contact-dialog/contact-
 import { DialogService } from "./contact/services/dialog.service";
 import { MapDialogComponent } from './contact/dialog/map-dialog/map-dialog.component';
 import { DeleteDialogComponent } from './contact/dialog/delete-dialog/delete-dialog.component';
-import {ContactHttpService} from "./contact/services/contact-http.service";
-import {ContactLocalStorageService} from "./contact/services/contact-local-storage.service";
+import { ContactHttpService } from "./contact/services/contact-http.service";
+import { ContactLocalStorageService } from "./contact/services/contact-localstorage.service";
 import { ContactAddressPipe } from './contact/pipes/contact-address.pipe';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './user/login/login.component';
+import { HttpService } from './contact/services/http.service';
 import { RouterModule } from '@angular/router';
 import 'hammerjs';
-import {ContactService} from "./contact/services/contact.service";
+import { ContactService } from "./contact/services/contact.service";
+import { HelpComponent } from './help/help.component';
 
 const routes = [
   {
@@ -35,6 +37,10 @@ const routes = [
   {
     path: 'contact',
     component: ContactComponent
+  },
+  {
+    path: 'help',
+    component: HelpComponent
   }
 ];
 
@@ -48,7 +54,8 @@ const routes = [
     DeleteDialogComponent,
     ContactAddressPipe,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
@@ -61,12 +68,22 @@ const routes = [
   ],
   entryComponents: [ContactDialogComponent,
                     MapDialogComponent,
-                    DeleteDialogComponent],
+                    DeleteDialogComponent
+  ],
   providers: [ContactService,
               ContactComponent,
               ContactLocalStorageService,
               ContactHttpService,
-              DialogService],
+              DialogService,
+    {
+      provide: HttpService,
+      useFactory: (backend: XHRBackend, options: RequestOptions) => {
+        return new HttpService(backend, options);
+      },
+      deps: [XHRBackend, RequestOptions]
+
+    }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

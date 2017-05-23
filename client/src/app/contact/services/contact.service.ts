@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ContactHttpService} from "./contact-http.service";
-import {ContactLocalStorageService} from "./contact-local-storage.service";
+import {ContactLocalStorageService} from "./contact-localstorage.service";
 import {ContactStorage} from "./contact-storage";
 import {Contact} from "../contact";
 import {environment} from "../../../environments/environment";

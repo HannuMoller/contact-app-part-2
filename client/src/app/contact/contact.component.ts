@@ -2,7 +2,9 @@ import {Contact} from "./contact";
 import { DialogService } from "./services/dialog.service";
 import {Component, Inject, Injectable} from "@angular/core";
 import {ContactService} from "./services/contact.service";
-import {Listener} from "../util/listener";
+import {Router} from "@angular/router";
+import {Http, Response, Headers, RequestOptions, RequestMethod} from "@angular/http";
+
 
 @Component({
   selector: 'component',
@@ -16,13 +18,17 @@ export class ContactComponent {
 
   contacts: Contact[];
 
-  constructor(private contactService: ContactService, private dialogService: DialogService) {
-    Listener.setComponent(this);
+  constructor(private contactService: ContactService, private dialogService: DialogService, private router: Router) {
+//    Listener.setComponent(this);
     this.getContacts();
   }
 
   getContacts() {
-    this.contactService.findContacts().subscribe(contacts => this.contacts = contacts);
+    this.contactService.findContacts()
+      .catch(error => this.router.navigate(['login']))
+      .subscribe(resp => {
+          this.contacts = resp;
+      });
   }
 
   editContact(contact: Contact) {
@@ -32,7 +38,9 @@ export class ContactComponent {
       if (!result) {
         return;
       }
-      this.contactService.saveContact(result).subscribe(result => this.getContacts());
+      this.contactService.saveContact(result)
+        .catch(error => this.router.navigate(['login']))
+        .subscribe(result => this.getContacts());
     });
 
   }
@@ -45,7 +53,9 @@ export class ContactComponent {
       if (!result) {
         return;
       }
-      this.contactService.removeContact(result).subscribe(result => this.getContacts());
+      this.contactService.removeContact(result)
+        .catch(error => this.router.navigate(['login']))
+        .subscribe(result => this.getContacts());
     });
 
   }
@@ -63,7 +73,9 @@ export class ContactComponent {
       if (!result) {
         return;
       }
-      this.contactService.addContact(result).subscribe(result => this.getContacts());
+      this.contactService.addContact(result)
+        .catch(error => this.router.navigate(['login']))
+        .subscribe(result => this.getContacts());
     });
   }
 }

@@ -5,6 +5,8 @@
 
 export const environment = {
   production: false,
-  serverUrl: "http://localhost:50172/api/contacts/",
-  serverType: "HTTP"
+  no_serverUrl: "http://huhtari.torppari.org/contact.php/",
+  serverUrl: "http://localhost:60829/api/contacts/",
+  loginUrl: "http://localhost:60829/api/user/",
+  authUrl: "http://localhost:60829/api/authentication"
 };
