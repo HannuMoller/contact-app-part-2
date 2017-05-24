@@ -38,7 +38,7 @@ Sandbox testing environment:
   - open client project
   - in Terminal window execute command:
 
-    ng serve
+    _ng serve_
     
 
 Client will be use server's REST API to
